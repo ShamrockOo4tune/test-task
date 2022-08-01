@@ -1,0 +1,10 @@
+#!/usr/bin/ansible-playbook 
+---
+- name         : Configure web server with nginx
+  hosts        : end_servers
+  gather_facts : 0
+  become       : 1
+
+  roles        :
+    - install_software
+...

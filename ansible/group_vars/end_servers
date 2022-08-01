@@ -2,3 +2,4 @@
 ansible_port             : 22
 ansible_user             : ansible
 ansible_private_key_file : ~/.ssh/ansible_id_rsa
+...
