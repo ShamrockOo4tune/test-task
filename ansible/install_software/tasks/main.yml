@@ -1,0 +1,104 @@
+---
+# tasks file for install_software
+# a. Подключение репозитория на конечном сервере;
+# b. Установка Apache из пакетов;
+# c. Выполнение незамедлительно перезагрузки системы;
+# d. Удаление сервиса Apache из автозагрузки системы;
+# e. Выполнение отложенной перезагрузки системы;
+# f. Выполнение команды по отображению состояния сервиса Apache;
+# g. Добавление сервиса Apache в автозагрузку системы;
+# h. Отключение сервиса Apache;
+# i. Выполнение команды по отображению состояния сервиса Apache;
+# j. Включение сервиса Apache;
+# k. Выполнение незамедлительно перезагрузки системы;
+# l. Выполнение команды по отображению списка файлов в каталоге, где расположен основной файл конфигурации Apache.
+
+- name     : a. Install epel repo
+  yum      : 
+    name   : epel-release
+    
+- name     : b. Install apache
+  yum      : 
+    name   : httpd
+    update_cache: 1
+
+- name     : c. Immediate reboot
+  reboot   :
+
+- name     : d. Disable apache
+  systemd  : 
+    name   : httpd
+    enabled: 0
+
+- name     : e. Schedule reboot with variable delay and jump out of the box
+  shell    : nohup bash -c "sleep 2s && shutdown -r +'{{ VARIABLE_DELAY }}'" &
+
+- name     : e. Wait for machine to come back
+  wait_for_connection:
+   timeout: '{{ DEFAULT_TIMEOUT }}'
+   delay  : '{{ DEFAULT_DELAY }}'
+
+# But this won't work!
+# - name     : e. Reboot with variable delay
+#   reboot   : 
+#     reboot_command : shutdown -r +'{{ VARIABLE_DELAY }}' 
+
+- name     : f. Get apache state 
+  systemd  :
+    name   : httpd
+  register : APACHE_STATE
+
+- name     : f. Print apache state 
+  debug    :
+    msg    : 
+      - "{{ APACHE_STATE.status.Description }}"
+      - "  Loaded: {{ APACHE_STATE.status.LoadState }} ({{ APACHE_STATE.status.FragmentPath }}; {{ APACHE_STATE.status.UnitFileState }}; vendor preset: {{ APACHE_STATE.status.UnitFilePreset }})"
+      - "  Active: {{ APACHE_STATE.status.ActiveState }} ({{ APACHE_STATE.status.SubState }})"
+
+- name     : g. Enable apache
+  systemd  :
+    name   : httpd
+    enabled: 1
+
+- name     : h. Stop apache
+  systemd  :
+    name   : httpd
+    state  : stopped
+  register : APACHE_STATE
+
+- name     : i. Print apache state 
+  debug    :
+    msg    : 
+      - "{{ APACHE_STATE.status.Description }}"
+      - "  Loaded: {{ APACHE_STATE.status.LoadState }} ({{ APACHE_STATE.status.FragmentPath }}; {{ APACHE_STATE.status.UnitFileState }}; vendor preset: {{ APACHE_STATE.status.UnitFilePreset }})"
+      - "  Active: {{ APACHE_STATE.status.ActiveState }} ({{ APACHE_STATE.status.SubState }})"
+
+- name     : j. Start apache
+  systemd  :
+    name   : httpd
+    state  : started
+  register : APACHE_STATE
+
+- name     : k. Immediate reboot
+  reboot   :
+
+- name       : l. Get path of directory where main ansible.cfg is situated
+  shell      : ansible --version | awk 'NR == 2 {print $4}' | sed 's|/ansible.cfg$||'
+  delegate_to: '{{ DEFAULT_CONTROL_PLANE_IP }}'
+  become     : 0
+  register   : CFG_PATH
+
+
+- name       : l. Get contents of directory where main ansible.cfg is situated  
+  delegate_to: '{{ DEFAULT_CONTROL_PLANE_IP }}'
+  become     : 0
+  find       :
+    paths    : '{{ CFG_PATH.stdout }}'
+    hidden   : 1
+    file_type: any
+  register   : CONTENTS
+
+- name       : l. Print out $CONTENTS   
+  debug      :
+    msg      : "{{ CONTENTS['files'] | map(attribute='path') | map('regex_replace','^.*/(.*)$','\\1') | list }}"
+...

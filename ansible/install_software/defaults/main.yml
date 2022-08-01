@@ -1,0 +1,6 @@
+---
+# defaults file for install_software
+DEFAULT_TIMEOUT          : 240
+DEFAULT_DELAY            : 15
+DEFAULT_CONTROL_PLANE_IP : 127.0.0.1
+...

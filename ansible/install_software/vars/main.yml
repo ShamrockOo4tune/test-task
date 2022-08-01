@@ -1,0 +1,4 @@
+---
+# vars file for install_software
+VARIABLE_DELAY : 1
+...

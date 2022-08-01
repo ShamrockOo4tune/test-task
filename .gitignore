@@ -32,3 +32,6 @@ override.tf.json
 .vdi
 DHCP01
 SRV01
+
+# travis-ci is not used here
+.travis.yml
