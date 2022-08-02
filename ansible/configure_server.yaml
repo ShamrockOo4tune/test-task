@@ -1,10 +1,10 @@
 #!/usr/bin/ansible-playbook 
 ---
-- name         : Install apache web server 
+- name         : Configure end server
   hosts        : end_servers
   gather_facts : 0
   become       : 1
 
   roles        :
-    - install_software
+    - configure_server
 ...

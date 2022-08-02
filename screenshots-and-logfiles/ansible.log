@@ -1,0 +1,1207 @@
+
+2022-08-02 15:10:12,110 p=47332 u=anduser n=ansible | Using /home/anduser/test-task/ansible/ansible.cfg as config file
+2022-08-02 15:10:12,268 p=47332 u=anduser n=ansible | PLAY [Install apache web server] *****************************************************************************************************************************************************
+2022-08-02 15:10:12,286 p=47332 u=anduser n=ansible | TASK [install_software : a. Install epel repo] ***************************************************************************************************************************************
+2022-08-02 15:10:12,286 p=47332 u=anduser n=ansible | Вторник 02 августа 2022  15:10:12 +0300 (0:00:00.020)       0:00:00.020 ******* 
+2022-08-02 15:10:14,029 p=47332 u=anduser n=ansible | ok: [SRV01] => changed=false 
+  ansible_facts:
+    discovered_interpreter_python: /usr/bin/python
+  msg: ''
+  rc: 0
+  results:
+  - epel-release-7-11.noarch providing epel-release is already installed
+2022-08-02 15:10:14,044 p=47332 u=anduser n=ansible | TASK [install_software : b. Install apache] ******************************************************************************************************************************************
+2022-08-02 15:10:14,044 p=47332 u=anduser n=ansible | Вторник 02 августа 2022  15:10:14 +0300 (0:00:01.757)       0:00:01.778 ******* 
+2022-08-02 15:10:15,053 p=47332 u=anduser n=ansible | ok: [SRV01] => changed=false 
+  ansible_facts:
+    pkg_mgr: yum
+  msg: ''
+  rc: 0
+  results:
+  - httpd-2.4.6-97.el7.centos.5.x86_64 providing httpd is already installed
+2022-08-02 15:10:15,068 p=47332 u=anduser n=ansible | TASK [install_software : c. Immediate reboot] ****************************************************************************************************************************************
+2022-08-02 15:10:15,068 p=47332 u=anduser n=ansible | Вторник 02 августа 2022  15:10:15 +0300 (0:00:01.023)       0:00:02.802 ******* 
+2022-08-02 15:10:48,564 p=47332 u=anduser n=ansible | changed: [SRV01] => changed=true 
+  elapsed: 32
+  rebooted: true
+2022-08-02 15:10:48,576 p=47332 u=anduser n=ansible | TASK [install_software : d. Disable apache] ******************************************************************************************************************************************
+2022-08-02 15:10:48,576 p=47332 u=anduser n=ansible | Вторник 02 августа 2022  15:10:48 +0300 (0:00:33.508)       0:00:36.310 ******* 
+2022-08-02 15:10:49,376 p=47332 u=anduser n=ansible | changed: [SRV01] => changed=true 
+  enabled: false
+  name: httpd
+  status:
+    ActiveEnterTimestamp: Вт 2022-08-02 01:26:04 EDT
+    ActiveEnterTimestampMonotonic: '16070550'
+    ActiveExitTimestampMonotonic: '0'
+    ActiveState: active
+    After: basic.target remote-fs.target network.target systemd-journald.socket system.slice nss-lookup.target tmp.mount -.mount
+    AllowIsolate: 'no'
+    AmbientCapabilities: '0'
+    AssertResult: 'yes'
+    AssertTimestamp: Вт 2022-08-02 01:26:03 EDT
+    AssertTimestampMonotonic: '15616130'
+    Before: multi-user.target shutdown.target
+    BlockIOAccounting: 'no'
+    BlockIOWeight: '18446744073709551615'
+    CPUAccounting: 'no'
+    CPUQuotaPerSecUSec: infinity
+    CPUSchedulingPolicy: '0'
+    CPUSchedulingPriority: '0'
+    CPUSchedulingResetOnFork: 'no'
+    CPUShares: '18446744073709551615'
+    CanIsolate: 'no'
+    CanReload: 'yes'
+    CanStart: 'yes'
+    CanStop: 'yes'
+    CapabilityBoundingSet: '18446744073709551615'
+    CollectMode: inactive
+    ConditionResult: 'yes'
+    ConditionTimestamp: Вт 2022-08-02 01:26:03 EDT
+    ConditionTimestampMonotonic: '15616130'
+    Conflicts: shutdown.target
+    ControlGroup: /system.slice/httpd.service
+    ControlPID: '0'
+    DefaultDependencies: 'yes'
+    Delegate: 'no'
+    Description: The Apache HTTP Server
+    DevicePolicy: auto
+    Documentation: man:httpd(8) man:apachectl(8)
+    EnvironmentFile: /etc/sysconfig/httpd (ignore_errors=no)
+    ExecMainCode: '0'
+    ExecMainExitTimestampMonotonic: '0'
+    ExecMainPID: '1113'
+    ExecMainStartTimestamp: Вт 2022-08-02 01:26:03 EDT
+    ExecMainStartTimestampMonotonic: '15618649'
+    ExecMainStatus: '0'
+    ExecReload: '{ path=/usr/sbin/httpd ; argv[]=/usr/sbin/httpd $OPTIONS -k graceful ; ignore_errors=no ; start_time=[n/a] ; stop_time=[n/a] ; pid=0 ; code=(null) ; status=0/0 }'
+    ExecStart: '{ path=/usr/sbin/httpd ; argv[]=/usr/sbin/httpd $OPTIONS -DFOREGROUND ; ignore_errors=no ; start_time=[Вт 2022-08-02 01:26:03 EDT] ; stop_time=[n/a] ; pid=1113 ; code=(null) ; status=0/0 }'
+    ExecStop: '{ path=/bin/kill ; argv[]=/bin/kill -WINCH ${MAINPID} ; ignore_errors=no ; start_time=[n/a] ; stop_time=[n/a] ; pid=0 ; code=(null) ; status=0/0 }'
+    FailureAction: none
+    FileDescriptorStoreMax: '0'
+    FragmentPath: /usr/lib/systemd/system/httpd.service
+    GuessMainPID: 'yes'
+    IOScheduling: '0'
+    Id: httpd.service
+    IgnoreOnIsolate: 'no'
+    IgnoreOnSnapshot: 'no'
+    IgnoreSIGPIPE: 'yes'
+    InactiveEnterTimestampMonotonic: '0'
+    InactiveExitTimestamp: Вт 2022-08-02 01:26:03 EDT
+    InactiveExitTimestampMonotonic: '15618691'
+    JobTimeoutAction: none
+    JobTimeoutUSec: '0'
+    KillMode: control-group
+    KillSignal: '18'
+    LimitAS: '18446744073709551615'
+    LimitCORE: '18446744073709551615'
+    LimitCPU: '18446744073709551615'
+    LimitDATA: '18446744073709551615'
+    LimitFSIZE: '18446744073709551615'
+    LimitLOCKS: '18446744073709551615'
+    LimitMEMLOCK: '65536'
+    LimitMSGQUEUE: '819200'
+    LimitNICE: '0'
+    LimitNOFILE: '4096'
+    LimitNPROC: '3870'
+    LimitRSS: '18446744073709551615'
+    LimitRTPRIO: '0'
+    LimitRTTIME: '18446744073709551615'
+    LimitSIGPENDING: '3870'
+    LimitSTACK: '18446744073709551615'
+    LoadState: loaded
+    MainPID: '1113'
+    MemoryAccounting: 'no'
+    MemoryCurrent: '18446744073709551615'
+    MemoryLimit: '18446744073709551615'
+    MountFlags: '0'
+    Names: httpd.service
+    NeedDaemonReload: 'no'
+    Nice: '0'
+    NoNewPrivileges: 'no'
+    NonBlocking: 'no'
+    NotifyAccess: main
+    OOMScoreAdjust: '0'
+    OnFailureJobMode: replace
+    PermissionsStartOnly: 'no'
+    PrivateDevices: 'no'
+    PrivateNetwork: 'no'
+    PrivateTmp: 'yes'
+    ProtectHome: 'no'
+    ProtectSystem: 'no'
+    RefuseManualStart: 'no'
+    RefuseManualStop: 'no'
+    RemainAfterExit: 'no'
+    Requires: basic.target -.mount system.slice
+    RequiresMountsFor: /var/tmp
+    Restart: 'no'
+    RestartUSec: 100ms
+    Result: success
+    RootDirectoryStartOnly: 'no'
+    RuntimeDirectoryMode: '0755'
+    SameProcessGroup: 'no'
+    SecureBits: '0'
+    SendSIGHUP: 'no'
+    SendSIGKILL: 'yes'
+    Slice: system.slice
+    StandardError: inherit
+    StandardInput: 'null'
+    StandardOutput: journal
+    StartLimitAction: none
+    StartLimitBurst: '5'
+    StartLimitInterval: '10000000'
+    StartupBlockIOWeight: '18446744073709551615'
+    StartupCPUShares: '18446744073709551615'
+    StatusErrno: '0'
+    StatusText: Processing requests...
+    StopWhenUnneeded: 'no'
+    SubState: running
+    SyslogLevelPrefix: 'yes'
+    SyslogPriority: '30'
+    SystemCallErrorNumber: '0'
+    TTYReset: 'no'
+    TTYVHangup: 'no'
+    TTYVTDisallocate: 'no'
+    TasksAccounting: 'no'
+    TasksCurrent: '18446744073709551615'
+    TasksMax: '18446744073709551615'
+    TimeoutStartUSec: 1min 30s
+    TimeoutStopUSec: 1min 30s
+    TimerSlackNSec: '50000'
+    Transient: 'no'
+    Type: notify
+    UMask: '0022'
+    UnitFilePreset: disabled
+    UnitFileState: enabled
+    WantedBy: multi-user.target
+    WatchdogTimestamp: Вт 2022-08-02 01:26:04 EDT
+    WatchdogTimestampMonotonic: '16070358'
+    WatchdogUSec: '0'
+2022-08-02 15:10:49,386 p=47332 u=anduser n=ansible | TASK [install_software : e. Schedule reboot with variable delay and jump out of the box] *********************************************************************************************
+2022-08-02 15:10:49,386 p=47332 u=anduser n=ansible | Вторник 02 августа 2022  15:10:49 +0300 (0:00:00.809)       0:00:37.120 ******* 
+2022-08-02 15:10:50,881 p=47332 u=anduser n=ansible | changed: [SRV01] => changed=true 
+  cmd: nohup bash -c "sleep 2s && shutdown -r +'1'" &
+  delta: '0:00:01.004761'
+  end: '2022-08-02 01:26:07.611446'
+  msg: ''
+  rc: 0
+  start: '2022-08-02 01:26:06.606685'
+  stderr: ''
+  stderr_lines: <omitted>
+  stdout: ''
+  stdout_lines: <omitted>
+2022-08-02 15:10:50,894 p=47332 u=anduser n=ansible | TASK [install_software : e. Wait for machine to come back] ***************************************************************************************************************************
+2022-08-02 15:10:50,894 p=47332 u=anduser n=ansible | Вторник 02 августа 2022  15:10:50 +0300 (0:00:01.508)       0:00:38.628 ******* 
+2022-08-02 15:12:25,141 p=47332 u=anduser n=ansible | ok: [SRV01] => changed=false 
+  elapsed: 94
+2022-08-02 15:12:25,153 p=47332 u=anduser n=ansible | TASK [install_software : f. Get apache state] ****************************************************************************************************************************************
+2022-08-02 15:12:25,153 p=47332 u=anduser n=ansible | Вторник 02 августа 2022  15:12:25 +0300 (0:01:34.258)       0:02:12.886 ******* 
+2022-08-02 15:12:25,609 p=47332 u=anduser n=ansible | ok: [SRV01] => changed=false 
+  name: httpd
+  status:
+    ActiveEnterTimestampMonotonic: '0'
+    ActiveExitTimestampMonotonic: '0'
+    ActiveState: inactive
+    After: -.mount system.slice network.target nss-lookup.target systemd-journald.socket tmp.mount basic.target remote-fs.target
+    AllowIsolate: 'no'
+    AmbientCapabilities: '0'
+    AssertResult: 'no'
+    AssertTimestampMonotonic: '0'
+    Before: shutdown.target
+    BlockIOAccounting: 'no'
+    BlockIOWeight: '18446744073709551615'
+    CPUAccounting: 'no'
+    CPUQuotaPerSecUSec: infinity
+    CPUSchedulingPolicy: '0'
+    CPUSchedulingPriority: '0'
+    CPUSchedulingResetOnFork: 'no'
+    CPUShares: '18446744073709551615'
+    CanIsolate: 'no'
+    CanReload: 'yes'
+    CanStart: 'yes'
+    CanStop: 'yes'
+    CapabilityBoundingSet: '18446744073709551615'
+    CollectMode: inactive
+    ConditionResult: 'no'
+    ConditionTimestampMonotonic: '0'
+    Conflicts: shutdown.target
+    ControlPID: '0'
+    DefaultDependencies: 'yes'
+    Delegate: 'no'
+    Description: The Apache HTTP Server
+    DevicePolicy: auto
+    Documentation: man:httpd(8) man:apachectl(8)
+    EnvironmentFile: /etc/sysconfig/httpd (ignore_errors=no)
+    ExecMainCode: '0'
+    ExecMainExitTimestampMonotonic: '0'
+    ExecMainPID: '0'
+    ExecMainStartTimestampMonotonic: '0'
+    ExecMainStatus: '0'
+    ExecReload: '{ path=/usr/sbin/httpd ; argv[]=/usr/sbin/httpd $OPTIONS -k graceful ; ignore_errors=no ; start_time=[n/a] ; stop_time=[n/a] ; pid=0 ; code=(null) ; status=0/0 }'
+    ExecStart: '{ path=/usr/sbin/httpd ; argv[]=/usr/sbin/httpd $OPTIONS -DFOREGROUND ; ignore_errors=no ; start_time=[n/a] ; stop_time=[n/a] ; pid=0 ; code=(null) ; status=0/0 }'
+    ExecStop: '{ path=/bin/kill ; argv[]=/bin/kill -WINCH ${MAINPID} ; ignore_errors=no ; start_time=[n/a] ; stop_time=[n/a] ; pid=0 ; code=(null) ; status=0/0 }'
+    FailureAction: none
+    FileDescriptorStoreMax: '0'
+    FragmentPath: /usr/lib/systemd/system/httpd.service
+    GuessMainPID: 'yes'
+    IOScheduling: '0'
+    Id: httpd.service
+    IgnoreOnIsolate: 'no'
+    IgnoreOnSnapshot: 'no'
+    IgnoreSIGPIPE: 'yes'
+    InactiveEnterTimestampMonotonic: '0'
+    InactiveExitTimestampMonotonic: '0'
+    JobTimeoutAction: none
+    JobTimeoutUSec: '0'
+    KillMode: control-group
+    KillSignal: '18'
+    LimitAS: '18446744073709551615'
+    LimitCORE: '18446744073709551615'
+    LimitCPU: '18446744073709551615'
+    LimitDATA: '18446744073709551615'
+    LimitFSIZE: '18446744073709551615'
+    LimitLOCKS: '18446744073709551615'
+    LimitMEMLOCK: '65536'
+    LimitMSGQUEUE: '819200'
+    LimitNICE: '0'
+    LimitNOFILE: '4096'
+    LimitNPROC: '3870'
+    LimitRSS: '18446744073709551615'
+    LimitRTPRIO: '0'
+    LimitRTTIME: '18446744073709551615'
+    LimitSIGPENDING: '3870'
+    LimitSTACK: '18446744073709551615'
+    LoadState: loaded
+    MainPID: '0'
+    MemoryAccounting: 'no'
+    MemoryCurrent: '18446744073709551615'
+    MemoryLimit: '18446744073709551615'
+    MountFlags: '0'
+    Names: httpd.service
+    NeedDaemonReload: 'no'
+    Nice: '0'
+    NoNewPrivileges: 'no'
+    NonBlocking: 'no'
+    NotifyAccess: main
+    OOMScoreAdjust: '0'
+    OnFailureJobMode: replace
+    PermissionsStartOnly: 'no'
+    PrivateDevices: 'no'
+    PrivateNetwork: 'no'
+    PrivateTmp: 'yes'
+    ProtectHome: 'no'
+    ProtectSystem: 'no'
+    RefuseManualStart: 'no'
+    RefuseManualStop: 'no'
+    RemainAfterExit: 'no'
+    Requires: -.mount basic.target system.slice
+    RequiresMountsFor: /var/tmp
+    Restart: 'no'
+    RestartUSec: 100ms
+    Result: success
+    RootDirectoryStartOnly: 'no'
+    RuntimeDirectoryMode: '0755'
+    SameProcessGroup: 'no'
+    SecureBits: '0'
+    SendSIGHUP: 'no'
+    SendSIGKILL: 'yes'
+    Slice: system.slice
+    StandardError: inherit
+    StandardInput: 'null'
+    StandardOutput: journal
+    StartLimitAction: none
+    StartLimitBurst: '5'
+    StartLimitInterval: '10000000'
+    StartupBlockIOWeight: '18446744073709551615'
+    StartupCPUShares: '18446744073709551615'
+    StatusErrno: '0'
+    StopWhenUnneeded: 'no'
+    SubState: dead
+    SyslogLevelPrefix: 'yes'
+    SyslogPriority: '30'
+    SystemCallErrorNumber: '0'
+    TTYReset: 'no'
+    TTYVHangup: 'no'
+    TTYVTDisallocate: 'no'
+    TasksAccounting: 'no'
+    TasksCurrent: '18446744073709551615'
+    TasksMax: '18446744073709551615'
+    TimeoutStartUSec: 1min 30s
+    TimeoutStopUSec: 1min 30s
+    TimerSlackNSec: '50000'
+    Transient: 'no'
+    Type: notify
+    UMask: '0022'
+    UnitFilePreset: disabled
+    UnitFileState: disabled
+    WatchdogTimestampMonotonic: '0'
+    WatchdogUSec: '0'
+2022-08-02 15:12:25,618 p=47332 u=anduser n=ansible | TASK [install_software : f. Print apache state] **************************************************************************************************************************************
+2022-08-02 15:12:25,618 p=47332 u=anduser n=ansible | Вторник 02 августа 2022  15:12:25 +0300 (0:00:00.465)       0:02:13.352 ******* 
+2022-08-02 15:12:25,649 p=47332 u=anduser n=ansible | ok: [SRV01] => 
+  msg:
+  - The Apache HTTP Server
+  - '  Loaded: loaded (/usr/lib/systemd/system/httpd.service; disabled; vendor preset: disabled)'
+  - '  Active: inactive (dead)'
+2022-08-02 15:12:25,658 p=47332 u=anduser n=ansible | TASK [install_software : g. Enable apache] *******************************************************************************************************************************************
+2022-08-02 15:12:25,658 p=47332 u=anduser n=ansible | Вторник 02 августа 2022  15:12:25 +0300 (0:00:00.040)       0:02:13.392 ******* 
+2022-08-02 15:12:26,189 p=47332 u=anduser n=ansible | changed: [SRV01] => changed=true 
+  enabled: true
+  name: httpd
+  status:
+    ActiveEnterTimestampMonotonic: '0'
+    ActiveExitTimestampMonotonic: '0'
+    ActiveState: inactive
+    After: tmp.mount network.target system.slice basic.target remote-fs.target -.mount systemd-journald.socket nss-lookup.target
+    AllowIsolate: 'no'
+    AmbientCapabilities: '0'
+    AssertResult: 'no'
+    AssertTimestampMonotonic: '0'
+    Before: shutdown.target
+    BlockIOAccounting: 'no'
+    BlockIOWeight: '18446744073709551615'
+    CPUAccounting: 'no'
+    CPUQuotaPerSecUSec: infinity
+    CPUSchedulingPolicy: '0'
+    CPUSchedulingPriority: '0'
+    CPUSchedulingResetOnFork: 'no'
+    CPUShares: '18446744073709551615'
+    CanIsolate: 'no'
+    CanReload: 'yes'
+    CanStart: 'yes'
+    CanStop: 'yes'
+    CapabilityBoundingSet: '18446744073709551615'
+    CollectMode: inactive
+    ConditionResult: 'no'
+    ConditionTimestampMonotonic: '0'
+    Conflicts: shutdown.target
+    ControlPID: '0'
+    DefaultDependencies: 'yes'
+    Delegate: 'no'
+    Description: The Apache HTTP Server
+    DevicePolicy: auto
+    Documentation: man:httpd(8) man:apachectl(8)
+    EnvironmentFile: /etc/sysconfig/httpd (ignore_errors=no)
+    ExecMainCode: '0'
+    ExecMainExitTimestampMonotonic: '0'
+    ExecMainPID: '0'
+    ExecMainStartTimestampMonotonic: '0'
+    ExecMainStatus: '0'
+    ExecReload: '{ path=/usr/sbin/httpd ; argv[]=/usr/sbin/httpd $OPTIONS -k graceful ; ignore_errors=no ; start_time=[n/a] ; stop_time=[n/a] ; pid=0 ; code=(null) ; status=0/0 }'
+    ExecStart: '{ path=/usr/sbin/httpd ; argv[]=/usr/sbin/httpd $OPTIONS -DFOREGROUND ; ignore_errors=no ; start_time=[n/a] ; stop_time=[n/a] ; pid=0 ; code=(null) ; status=0/0 }'
+    ExecStop: '{ path=/bin/kill ; argv[]=/bin/kill -WINCH ${MAINPID} ; ignore_errors=no ; start_time=[n/a] ; stop_time=[n/a] ; pid=0 ; code=(null) ; status=0/0 }'
+    FailureAction: none
+    FileDescriptorStoreMax: '0'
+    FragmentPath: /usr/lib/systemd/system/httpd.service
+    GuessMainPID: 'yes'
+    IOScheduling: '0'
+    Id: httpd.service
+    IgnoreOnIsolate: 'no'
+    IgnoreOnSnapshot: 'no'
+    IgnoreSIGPIPE: 'yes'
+    InactiveEnterTimestampMonotonic: '0'
+    InactiveExitTimestampMonotonic: '0'
+    JobTimeoutAction: none
+    JobTimeoutUSec: '0'
+    KillMode: control-group
+    KillSignal: '18'
+    LimitAS: '18446744073709551615'
+    LimitCORE: '18446744073709551615'
+    LimitCPU: '18446744073709551615'
+    LimitDATA: '18446744073709551615'
+    LimitFSIZE: '18446744073709551615'
+    LimitLOCKS: '18446744073709551615'
+    LimitMEMLOCK: '65536'
+    LimitMSGQUEUE: '819200'
+    LimitNICE: '0'
+    LimitNOFILE: '4096'
+    LimitNPROC: '3870'
+    LimitRSS: '18446744073709551615'
+    LimitRTPRIO: '0'
+    LimitRTTIME: '18446744073709551615'
+    LimitSIGPENDING: '3870'
+    LimitSTACK: '18446744073709551615'
+    LoadState: loaded
+    MainPID: '0'
+    MemoryAccounting: 'no'
+    MemoryCurrent: '18446744073709551615'
+    MemoryLimit: '18446744073709551615'
+    MountFlags: '0'
+    Names: httpd.service
+    NeedDaemonReload: 'no'
+    Nice: '0'
+    NoNewPrivileges: 'no'
+    NonBlocking: 'no'
+    NotifyAccess: main
+    OOMScoreAdjust: '0'
+    OnFailureJobMode: replace
+    PermissionsStartOnly: 'no'
+    PrivateDevices: 'no'
+    PrivateNetwork: 'no'
+    PrivateTmp: 'yes'
+    ProtectHome: 'no'
+    ProtectSystem: 'no'
+    RefuseManualStart: 'no'
+    RefuseManualStop: 'no'
+    RemainAfterExit: 'no'
+    Requires: -.mount basic.target system.slice
+    RequiresMountsFor: /var/tmp
+    Restart: 'no'
+    RestartUSec: 100ms
+    Result: success
+    RootDirectoryStartOnly: 'no'
+    RuntimeDirectoryMode: '0755'
+    SameProcessGroup: 'no'
+    SecureBits: '0'
+    SendSIGHUP: 'no'
+    SendSIGKILL: 'yes'
+    Slice: system.slice
+    StandardError: inherit
+    StandardInput: 'null'
+    StandardOutput: journal
+    StartLimitAction: none
+    StartLimitBurst: '5'
+    StartLimitInterval: '10000000'
+    StartupBlockIOWeight: '18446744073709551615'
+    StartupCPUShares: '18446744073709551615'
+    StatusErrno: '0'
+    StopWhenUnneeded: 'no'
+    SubState: dead
+    SyslogLevelPrefix: 'yes'
+    SyslogPriority: '30'
+    SystemCallErrorNumber: '0'
+    TTYReset: 'no'
+    TTYVHangup: 'no'
+    TTYVTDisallocate: 'no'
+    TasksAccounting: 'no'
+    TasksCurrent: '18446744073709551615'
+    TasksMax: '18446744073709551615'
+    TimeoutStartUSec: 1min 30s
+    TimeoutStopUSec: 1min 30s
+    TimerSlackNSec: '50000'
+    Transient: 'no'
+    Type: notify
+    UMask: '0022'
+    UnitFilePreset: disabled
+    UnitFileState: disabled
+    WatchdogTimestampMonotonic: '0'
+    WatchdogUSec: '0'
+2022-08-02 15:12:26,200 p=47332 u=anduser n=ansible | TASK [install_software : h. Stop apache] *********************************************************************************************************************************************
+2022-08-02 15:12:26,201 p=47332 u=anduser n=ansible | Вторник 02 августа 2022  15:12:26 +0300 (0:00:00.542)       0:02:13.934 ******* 
+2022-08-02 15:12:26,619 p=47332 u=anduser n=ansible | ok: [SRV01] => changed=false 
+  name: httpd
+  state: stopped
+  status:
+    ActiveEnterTimestampMonotonic: '0'
+    ActiveExitTimestampMonotonic: '0'
+    ActiveState: inactive
+    After: systemd-journald.socket network.target -.mount remote-fs.target tmp.mount basic.target nss-lookup.target system.slice
+    AllowIsolate: 'no'
+    AmbientCapabilities: '0'
+    AssertResult: 'no'
+    AssertTimestampMonotonic: '0'
+    Before: multi-user.target shutdown.target
+    BlockIOAccounting: 'no'
+    BlockIOWeight: '18446744073709551615'
+    CPUAccounting: 'no'
+    CPUQuotaPerSecUSec: infinity
+    CPUSchedulingPolicy: '0'
+    CPUSchedulingPriority: '0'
+    CPUSchedulingResetOnFork: 'no'
+    CPUShares: '18446744073709551615'
+    CanIsolate: 'no'
+    CanReload: 'yes'
+    CanStart: 'yes'
+    CanStop: 'yes'
+    CapabilityBoundingSet: '18446744073709551615'
+    CollectMode: inactive
+    ConditionResult: 'no'
+    ConditionTimestampMonotonic: '0'
+    Conflicts: shutdown.target
+    ControlPID: '0'
+    DefaultDependencies: 'yes'
+    Delegate: 'no'
+    Description: The Apache HTTP Server
+    DevicePolicy: auto
+    Documentation: man:httpd(8) man:apachectl(8)
+    EnvironmentFile: /etc/sysconfig/httpd (ignore_errors=no)
+    ExecMainCode: '0'
+    ExecMainExitTimestampMonotonic: '0'
+    ExecMainPID: '0'
+    ExecMainStartTimestampMonotonic: '0'
+    ExecMainStatus: '0'
+    ExecReload: '{ path=/usr/sbin/httpd ; argv[]=/usr/sbin/httpd $OPTIONS -k graceful ; ignore_errors=no ; start_time=[n/a] ; stop_time=[n/a] ; pid=0 ; code=(null) ; status=0/0 }'
+    ExecStart: '{ path=/usr/sbin/httpd ; argv[]=/usr/sbin/httpd $OPTIONS -DFOREGROUND ; ignore_errors=no ; start_time=[n/a] ; stop_time=[n/a] ; pid=0 ; code=(null) ; status=0/0 }'
+    ExecStop: '{ path=/bin/kill ; argv[]=/bin/kill -WINCH ${MAINPID} ; ignore_errors=no ; start_time=[n/a] ; stop_time=[n/a] ; pid=0 ; code=(null) ; status=0/0 }'
+    FailureAction: none
+    FileDescriptorStoreMax: '0'
+    FragmentPath: /usr/lib/systemd/system/httpd.service
+    GuessMainPID: 'yes'
+    IOScheduling: '0'
+    Id: httpd.service
+    IgnoreOnIsolate: 'no'
+    IgnoreOnSnapshot: 'no'
+    IgnoreSIGPIPE: 'yes'
+    InactiveEnterTimestampMonotonic: '0'
+    InactiveExitTimestampMonotonic: '0'
+    JobTimeoutAction: none
+    JobTimeoutUSec: '0'
+    KillMode: control-group
+    KillSignal: '18'
+    LimitAS: '18446744073709551615'
+    LimitCORE: '18446744073709551615'
+    LimitCPU: '18446744073709551615'
+    LimitDATA: '18446744073709551615'
+    LimitFSIZE: '18446744073709551615'
+    LimitLOCKS: '18446744073709551615'
+    LimitMEMLOCK: '65536'
+    LimitMSGQUEUE: '819200'
+    LimitNICE: '0'
+    LimitNOFILE: '4096'
+    LimitNPROC: '3870'
+    LimitRSS: '18446744073709551615'
+    LimitRTPRIO: '0'
+    LimitRTTIME: '18446744073709551615'
+    LimitSIGPENDING: '3870'
+    LimitSTACK: '18446744073709551615'
+    LoadState: loaded
+    MainPID: '0'
+    MemoryAccounting: 'no'
+    MemoryCurrent: '18446744073709551615'
+    MemoryLimit: '18446744073709551615'
+    MountFlags: '0'
+    Names: httpd.service
+    NeedDaemonReload: 'no'
+    Nice: '0'
+    NoNewPrivileges: 'no'
+    NonBlocking: 'no'
+    NotifyAccess: main
+    OOMScoreAdjust: '0'
+    OnFailureJobMode: replace
+    PermissionsStartOnly: 'no'
+    PrivateDevices: 'no'
+    PrivateNetwork: 'no'
+    PrivateTmp: 'yes'
+    ProtectHome: 'no'
+    ProtectSystem: 'no'
+    RefuseManualStart: 'no'
+    RefuseManualStop: 'no'
+    RemainAfterExit: 'no'
+    Requires: system.slice basic.target -.mount
+    RequiresMountsFor: /var/tmp
+    Restart: 'no'
+    RestartUSec: 100ms
+    Result: success
+    RootDirectoryStartOnly: 'no'
+    RuntimeDirectoryMode: '0755'
+    SameProcessGroup: 'no'
+    SecureBits: '0'
+    SendSIGHUP: 'no'
+    SendSIGKILL: 'yes'
+    Slice: system.slice
+    StandardError: inherit
+    StandardInput: 'null'
+    StandardOutput: journal
+    StartLimitAction: none
+    StartLimitBurst: '5'
+    StartLimitInterval: '10000000'
+    StartupBlockIOWeight: '18446744073709551615'
+    StartupCPUShares: '18446744073709551615'
+    StatusErrno: '0'
+    StopWhenUnneeded: 'no'
+    SubState: dead
+    SyslogLevelPrefix: 'yes'
+    SyslogPriority: '30'
+    SystemCallErrorNumber: '0'
+    TTYReset: 'no'
+    TTYVHangup: 'no'
+    TTYVTDisallocate: 'no'
+    TasksAccounting: 'no'
+    TasksCurrent: '18446744073709551615'
+    TasksMax: '18446744073709551615'
+    TimeoutStartUSec: 1min 30s
+    TimeoutStopUSec: 1min 30s
+    TimerSlackNSec: '50000'
+    Transient: 'no'
+    Type: notify
+    UMask: '0022'
+    UnitFilePreset: disabled
+    UnitFileState: enabled
+    WantedBy: multi-user.target
+    WatchdogTimestampMonotonic: '0'
+    WatchdogUSec: '0'
+2022-08-02 15:12:26,629 p=47332 u=anduser n=ansible | TASK [install_software : i. Print apache state] **************************************************************************************************************************************
+2022-08-02 15:12:26,629 p=47332 u=anduser n=ansible | Вторник 02 августа 2022  15:12:26 +0300 (0:00:00.428)       0:02:14.363 ******* 
+2022-08-02 15:12:26,677 p=47332 u=anduser n=ansible | ok: [SRV01] => 
+  msg:
+  - The Apache HTTP Server
+  - '  Loaded: loaded (/usr/lib/systemd/system/httpd.service; enabled; vendor preset: disabled)'
+  - '  Active: inactive (dead)'
+2022-08-02 15:12:26,687 p=47332 u=anduser n=ansible | TASK [install_software : j. Start apache] ********************************************************************************************************************************************
+2022-08-02 15:12:26,687 p=47332 u=anduser n=ansible | Вторник 02 августа 2022  15:12:26 +0300 (0:00:00.057)       0:02:14.421 ******* 
+2022-08-02 15:12:27,315 p=47332 u=anduser n=ansible | changed: [SRV01] => changed=true 
+  name: httpd
+  state: started
+  status:
+    ActiveEnterTimestampMonotonic: '0'
+    ActiveExitTimestampMonotonic: '0'
+    ActiveState: inactive
+    After: systemd-journald.socket network.target -.mount remote-fs.target tmp.mount basic.target nss-lookup.target system.slice
+    AllowIsolate: 'no'
+    AmbientCapabilities: '0'
+    AssertResult: 'no'
+    AssertTimestampMonotonic: '0'
+    Before: multi-user.target shutdown.target
+    BlockIOAccounting: 'no'
+    BlockIOWeight: '18446744073709551615'
+    CPUAccounting: 'no'
+    CPUQuotaPerSecUSec: infinity
+    CPUSchedulingPolicy: '0'
+    CPUSchedulingPriority: '0'
+    CPUSchedulingResetOnFork: 'no'
+    CPUShares: '18446744073709551615'
+    CanIsolate: 'no'
+    CanReload: 'yes'
+    CanStart: 'yes'
+    CanStop: 'yes'
+    CapabilityBoundingSet: '18446744073709551615'
+    CollectMode: inactive
+    ConditionResult: 'no'
+    ConditionTimestampMonotonic: '0'
+    Conflicts: shutdown.target
+    ControlPID: '0'
+    DefaultDependencies: 'yes'
+    Delegate: 'no'
+    Description: The Apache HTTP Server
+    DevicePolicy: auto
+    Documentation: man:httpd(8) man:apachectl(8)
+    EnvironmentFile: /etc/sysconfig/httpd (ignore_errors=no)
+    ExecMainCode: '0'
+    ExecMainExitTimestampMonotonic: '0'
+    ExecMainPID: '0'
+    ExecMainStartTimestampMonotonic: '0'
+    ExecMainStatus: '0'
+    ExecReload: '{ path=/usr/sbin/httpd ; argv[]=/usr/sbin/httpd $OPTIONS -k graceful ; ignore_errors=no ; start_time=[n/a] ; stop_time=[n/a] ; pid=0 ; code=(null) ; status=0/0 }'
+    ExecStart: '{ path=/usr/sbin/httpd ; argv[]=/usr/sbin/httpd $OPTIONS -DFOREGROUND ; ignore_errors=no ; start_time=[n/a] ; stop_time=[n/a] ; pid=0 ; code=(null) ; status=0/0 }'
+    ExecStop: '{ path=/bin/kill ; argv[]=/bin/kill -WINCH ${MAINPID} ; ignore_errors=no ; start_time=[n/a] ; stop_time=[n/a] ; pid=0 ; code=(null) ; status=0/0 }'
+    FailureAction: none
+    FileDescriptorStoreMax: '0'
+    FragmentPath: /usr/lib/systemd/system/httpd.service
+    GuessMainPID: 'yes'
+    IOScheduling: '0'
+    Id: httpd.service
+    IgnoreOnIsolate: 'no'
+    IgnoreOnSnapshot: 'no'
+    IgnoreSIGPIPE: 'yes'
+    InactiveEnterTimestampMonotonic: '0'
+    InactiveExitTimestampMonotonic: '0'
+    JobTimeoutAction: none
+    JobTimeoutUSec: '0'
+    KillMode: control-group
+    KillSignal: '18'
+    LimitAS: '18446744073709551615'
+    LimitCORE: '18446744073709551615'
+    LimitCPU: '18446744073709551615'
+    LimitDATA: '18446744073709551615'
+    LimitFSIZE: '18446744073709551615'
+    LimitLOCKS: '18446744073709551615'
+    LimitMEMLOCK: '65536'
+    LimitMSGQUEUE: '819200'
+    LimitNICE: '0'
+    LimitNOFILE: '4096'
+    LimitNPROC: '3870'
+    LimitRSS: '18446744073709551615'
+    LimitRTPRIO: '0'
+    LimitRTTIME: '18446744073709551615'
+    LimitSIGPENDING: '3870'
+    LimitSTACK: '18446744073709551615'
+    LoadState: loaded
+    MainPID: '0'
+    MemoryAccounting: 'no'
+    MemoryCurrent: '18446744073709551615'
+    MemoryLimit: '18446744073709551615'
+    MountFlags: '0'
+    Names: httpd.service
+    NeedDaemonReload: 'no'
+    Nice: '0'
+    NoNewPrivileges: 'no'
+    NonBlocking: 'no'
+    NotifyAccess: main
+    OOMScoreAdjust: '0'
+    OnFailureJobMode: replace
+    PermissionsStartOnly: 'no'
+    PrivateDevices: 'no'
+    PrivateNetwork: 'no'
+    PrivateTmp: 'yes'
+    ProtectHome: 'no'
+    ProtectSystem: 'no'
+    RefuseManualStart: 'no'
+    RefuseManualStop: 'no'
+    RemainAfterExit: 'no'
+    Requires: system.slice basic.target -.mount
+    RequiresMountsFor: /var/tmp
+    Restart: 'no'
+    RestartUSec: 100ms
+    Result: success
+    RootDirectoryStartOnly: 'no'
+    RuntimeDirectoryMode: '0755'
+    SameProcessGroup: 'no'
+    SecureBits: '0'
+    SendSIGHUP: 'no'
+    SendSIGKILL: 'yes'
+    Slice: system.slice
+    StandardError: inherit
+    StandardInput: 'null'
+    StandardOutput: journal
+    StartLimitAction: none
+    StartLimitBurst: '5'
+    StartLimitInterval: '10000000'
+    StartupBlockIOWeight: '18446744073709551615'
+    StartupCPUShares: '18446744073709551615'
+    StatusErrno: '0'
+    StopWhenUnneeded: 'no'
+    SubState: dead
+    SyslogLevelPrefix: 'yes'
+    SyslogPriority: '30'
+    SystemCallErrorNumber: '0'
+    TTYReset: 'no'
+    TTYVHangup: 'no'
+    TTYVTDisallocate: 'no'
+    TasksAccounting: 'no'
+    TasksCurrent: '18446744073709551615'
+    TasksMax: '18446744073709551615'
+    TimeoutStartUSec: 1min 30s
+    TimeoutStopUSec: 1min 30s
+    TimerSlackNSec: '50000'
+    Transient: 'no'
+    Type: notify
+    UMask: '0022'
+    UnitFilePreset: disabled
+    UnitFileState: enabled
+    WantedBy: multi-user.target
+    WatchdogTimestampMonotonic: '0'
+    WatchdogUSec: '0'
+2022-08-02 15:12:27,326 p=47332 u=anduser n=ansible | TASK [install_software : k. Immediate reboot] ****************************************************************************************************************************************
+2022-08-02 15:12:27,327 p=47332 u=anduser n=ansible | Вторник 02 августа 2022  15:12:27 +0300 (0:00:00.639)       0:02:15.060 ******* 
+2022-08-02 15:13:00,876 p=47332 u=anduser n=ansible | changed: [SRV01] => changed=true 
+  elapsed: 32
+  rebooted: true
+2022-08-02 15:13:00,892 p=47332 u=anduser n=ansible | TASK [install_software : l. Get contents of main apache config directory] ************************************************************************************************************
+2022-08-02 15:13:00,892 p=47332 u=anduser n=ansible | Вторник 02 августа 2022  15:13:00 +0300 (0:00:33.565)       0:02:48.626 ******* 
+2022-08-02 15:13:01,301 p=47332 u=anduser n=ansible | ok: [SRV01] => changed=false 
+  examined: 2
+  files:
+  - atime: 1659441962.632243
+    ctime: 1659335096.5629377
+    dev: 64768
+    gid: 0
+    gr_name: root
+    inode: 33584768
+    isblk: false
+    ischr: false
+    isdir: false
+    isfifo: false
+    isgid: false
+    islnk: false
+    isreg: true
+    issock: false
+    isuid: false
+    mode: '0644'
+    mtime: 1642095493.0
+    nlink: 1
+    path: /etc/httpd/conf/httpd.conf
+    pw_name: root
+    rgrp: true
+    roth: true
+    rusr: true
+    size: 11753
+    uid: 0
+    wgrp: false
+    woth: false
+    wusr: true
+    xgrp: false
+    xoth: false
+    xusr: false
+  - atime: 1659441962.7322469
+    ctime: 1659335096.5639377
+    dev: 64768
+    gid: 0
+    gr_name: root
+    inode: 33584769
+    isblk: false
+    ischr: false
+    isdir: false
+    isfifo: false
+    isgid: false
+    islnk: false
+    isreg: true
+    issock: false
+    isuid: false
+    mode: '0644'
+    mtime: 1648133908.0
+    nlink: 1
+    path: /etc/httpd/conf/magic
+    pw_name: root
+    rgrp: true
+    roth: true
+    rusr: true
+    size: 13064
+    uid: 0
+    wgrp: false
+    woth: false
+    wusr: true
+    xgrp: false
+    xoth: false
+    xusr: false
+  matched: 2
+  msg: All paths examined
+  skipped_paths: {}
+2022-08-02 15:13:01,313 p=47332 u=anduser n=ansible | TASK [install_software : l. Print out $CONTENTS] *************************************************************************************************************************************
+2022-08-02 15:13:01,313 p=47332 u=anduser n=ansible | Вторник 02 августа 2022  15:13:01 +0300 (0:00:00.421)       0:02:49.047 ******* 
+2022-08-02 15:13:01,404 p=47332 u=anduser n=ansible | ok: [SRV01] => 
+  msg:
+  - httpd.conf
+  - magic
+2022-08-02 15:13:01,425 p=47332 u=anduser n=ansible | PLAY RECAP ***************************************************************************************************************************************************************************
+2022-08-02 15:13:01,426 p=47332 u=anduser n=ansible | SRV01                      : ok=15   changed=6    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+2022-08-02 15:13:01,426 p=47332 u=anduser n=ansible | Вторник 02 августа 2022  15:13:01 +0300 (0:00:00.113)       0:02:49.160 ******* 
+2022-08-02 15:13:01,427 p=47332 u=anduser n=ansible | =============================================================================== 
+2022-08-02 15:13:01,427 p=47332 u=anduser n=ansible | install_software : e. Wait for machine to come back -------------------------------------------------------------------------------------------------------------------------- 94.26s
+2022-08-02 15:13:01,427 p=47332 u=anduser n=ansible | install_software : k. Immediate reboot --------------------------------------------------------------------------------------------------------------------------------------- 33.57s
+2022-08-02 15:13:01,427 p=47332 u=anduser n=ansible | install_software : c. Immediate reboot --------------------------------------------------------------------------------------------------------------------------------------- 33.51s
+2022-08-02 15:13:01,427 p=47332 u=anduser n=ansible | install_software : a. Install epel repo --------------------------------------------------------------------------------------------------------------------------------------- 1.76s
+2022-08-02 15:13:01,427 p=47332 u=anduser n=ansible | install_software : e. Schedule reboot with variable delay and jump out of the box --------------------------------------------------------------------------------------------- 1.51s
+2022-08-02 15:13:01,427 p=47332 u=anduser n=ansible | install_software : b. Install apache ------------------------------------------------------------------------------------------------------------------------------------------ 1.02s
+2022-08-02 15:13:01,427 p=47332 u=anduser n=ansible | install_software : d. Disable apache ------------------------------------------------------------------------------------------------------------------------------------------ 0.81s
+2022-08-02 15:13:01,428 p=47332 u=anduser n=ansible | install_software : j. Start apache -------------------------------------------------------------------------------------------------------------------------------------------- 0.64s
+2022-08-02 15:13:01,428 p=47332 u=anduser n=ansible | install_software : g. Enable apache ------------------------------------------------------------------------------------------------------------------------------------------- 0.54s
+2022-08-02 15:13:01,428 p=47332 u=anduser n=ansible | install_software : f. Get apache state ---------------------------------------------------------------------------------------------------------------------------------------- 0.47s
+2022-08-02 15:13:01,428 p=47332 u=anduser n=ansible | install_software : h. Stop apache --------------------------------------------------------------------------------------------------------------------------------------------- 0.43s
+2022-08-02 15:13:01,428 p=47332 u=anduser n=ansible | install_software : l. Get contents of main apache config directory ------------------------------------------------------------------------------------------------------------ 0.42s
+2022-08-02 15:13:01,428 p=47332 u=anduser n=ansible | install_software : l. Print out $CONTENTS ------------------------------------------------------------------------------------------------------------------------------------- 0.11s
+2022-08-02 15:13:01,428 p=47332 u=anduser n=ansible | install_software : i. Print apache state -------------------------------------------------------------------------------------------------------------------------------------- 0.06s
+2022-08-02 15:13:01,428 p=47332 u=anduser n=ansible | install_software : f. Print apache state -------------------------------------------------------------------------------------------------------------------------------------- 0.04s
+2022-08-02 15:13:01,428 p=47332 u=anduser n=ansible | Playbook run took 0 days, 0 hours, 2 minutes, 49 seconds
+2022-08-02 15:13:31,135 p=47852 u=anduser n=ansible | Using /home/anduser/test-task/ansible/ansible.cfg as config file
+2022-08-02 15:13:31,290 p=47852 u=anduser n=ansible | PLAY [Configure end server] **********************************************************************************************************************************************************
+2022-08-02 15:13:31,313 p=47852 u=anduser n=ansible | TASK [configure_server : a1. Add user1] **********************************************************************************************************************************************
+2022-08-02 15:13:31,313 p=47852 u=anduser n=ansible | Вторник 02 августа 2022  15:13:31 +0300 (0:00:00.025)       0:00:00.025 ******* 
+2022-08-02 15:13:31,949 p=47852 u=anduser n=ansible | ok: [SRV01] => changed=false 
+  ansible_facts:
+    discovered_interpreter_python: /usr/bin/python
+  append: false
+  comment: ''
+  group: 1002
+  home: /home/user1
+  move_home: false
+  name: user1
+  shell: /bin/bash
+  state: present
+  uid: 1002
+2022-08-02 15:13:31,963 p=47852 u=anduser n=ansible | TASK [configure_server : a2. Add user2] **********************************************************************************************************************************************
+2022-08-02 15:13:31,963 p=47852 u=anduser n=ansible | Вторник 02 августа 2022  15:13:31 +0300 (0:00:00.650)       0:00:00.675 ******* 
+2022-08-02 15:13:32,351 p=47852 u=anduser n=ansible | ok: [SRV01] => changed=false 
+  append: false
+  comment: ''
+  group: 1003
+  home: /home/user2
+  move_home: false
+  name: user2
+  shell: /bin/sh
+  state: present
+  uid: 1003
+2022-08-02 15:13:32,364 p=47852 u=anduser n=ansible | TASK [configure_server : a3. Add user3] **********************************************************************************************************************************************
+2022-08-02 15:13:32,364 p=47852 u=anduser n=ansible | Вторник 02 августа 2022  15:13:32 +0300 (0:00:00.400)       0:00:01.076 ******* 
+2022-08-02 15:13:32,750 p=47852 u=anduser n=ansible | ok: [SRV01] => changed=false 
+  append: false
+  comment: ''
+  group: 995
+  home: /home/node_exporter
+  move_home: false
+  name: node_exporter
+  shell: /bin/false
+  state: present
+  uid: 997
+2022-08-02 15:13:32,757 p=47852 u=anduser n=ansible | TASK [configure_server : b. Create test_copy] ****************************************************************************************************************************************
+2022-08-02 15:13:32,757 p=47852 u=anduser n=ansible | Вторник 02 августа 2022  15:13:32 +0300 (0:00:00.393)       0:00:01.469 ******* 
+2022-08-02 15:13:33,207 p=47852 u=anduser n=ansible | ok: [SRV01] => changed=false 
+  gid: 1001
+  group: ansible
+  mode: '0755'
+  owner: ansible
+  path: /test_copy
+  secontext: unconfined_u:object_r:default_t:s0
+  size: 59
+  state: directory
+  uid: 1001
+2022-08-02 15:13:33,218 p=47852 u=anduser n=ansible | TASK [configure_server : c. Copy .txt file from template from ansible server] ********************************************************************************************************
+2022-08-02 15:13:33,219 p=47852 u=anduser n=ansible | Вторник 02 августа 2022  15:13:33 +0300 (0:00:00.461)       0:00:01.931 ******* 
+2022-08-02 15:13:33,949 p=47852 u=anduser n=ansible | ok: [SRV01] => changed=false 
+  checksum: 36aa403611a8336a5e3247958e60d0c196088ef0
+  dest: /test_copy/users.txt
+  gid: 1001
+  group: ansible
+  mode: '0644'
+  owner: ansible
+  path: /test_copy/users.txt
+  secontext: system_u:object_r:default_t:s0
+  size: 360
+  state: file
+  uid: 1001
+2022-08-02 15:13:33,958 p=47852 u=anduser n=ansible | TASK [configure_server : d. Copy .txt file to /opt] **********************************************************************************************************************************
+2022-08-02 15:13:33,958 p=47852 u=anduser n=ansible | Вторник 02 августа 2022  15:13:33 +0300 (0:00:00.739)       0:00:02.670 ******* 
+2022-08-02 15:13:34,405 p=47852 u=anduser n=ansible | changed: [SRV01] => changed=true 
+  checksum: 36aa403611a8336a5e3247958e60d0c196088ef0
+  dest: /opt/users_01.txt
+  gid: 1001
+  group: ansible
+  md5sum: ab00e8ec89499053d5cc472cba93a051
+  mode: '0664'
+  owner: ansible
+  secontext: system_u:object_r:usr_t:s0
+  size: 360
+  src: /test_copy/users.txt
+  state: file
+  uid: 1001
+2022-08-02 15:13:34,421 p=47852 u=anduser n=ansible | TASK [configure_server : e. chmod and chown for existing .txt file] ******************************************************************************************************************
+2022-08-02 15:13:34,421 p=47852 u=anduser n=ansible | Вторник 02 августа 2022  15:13:34 +0300 (0:00:00.462)       0:00:03.133 ******* 
+2022-08-02 15:13:34,784 p=47852 u=anduser n=ansible | changed: [SRV01] => changed=true 
+  gid: 1001
+  group: ansible
+  mode: '0600'
+  owner: user1
+  path: /opt/users_01.txt
+  secontext: system_u:object_r:usr_t:s0
+  size: 360
+  state: file
+  uid: 1002
+2022-08-02 15:13:34,796 p=47852 u=anduser n=ansible | TASK [configure_server : f. Set hostname s-test-01] **********************************************************************************************************************************
+2022-08-02 15:13:34,797 p=47852 u=anduser n=ansible | Вторник 02 августа 2022  15:13:34 +0300 (0:00:00.375)       0:00:03.509 ******* 
+2022-08-02 15:13:35,541 p=47852 u=anduser n=ansible | ok: [SRV01] => changed=false 
+  ansible_facts:
+    ansible_domain: ''
+    ansible_fqdn: s-test-01
+    ansible_hostname: s-test-01
+    ansible_nodename: s-test-01
+  name: s-test-01
+2022-08-02 15:13:35,556 p=47852 u=anduser n=ansible | TASK [configure_server : g. Disable apache] ******************************************************************************************************************************************
+2022-08-02 15:13:35,556 p=47852 u=anduser n=ansible | Вторник 02 августа 2022  15:13:35 +0300 (0:00:00.759)       0:00:04.268 ******* 
+2022-08-02 15:13:36,345 p=47852 u=anduser n=ansible | changed: [SRV01] => changed=true 
+  enabled: false
+  name: httpd
+  status:
+    ActiveEnterTimestamp: Вт 2022-08-02 01:28:16 EDT
+    ActiveEnterTimestampMonotonic: '16377572'
+    ActiveExitTimestampMonotonic: '0'
+    ActiveState: active
+    After: tmp.mount systemd-journald.socket basic.target system.slice remote-fs.target nss-lookup.target network.target -.mount
+    AllowIsolate: 'no'
+    AmbientCapabilities: '0'
+    AssertResult: 'yes'
+    AssertTimestamp: Вт 2022-08-02 01:28:16 EDT
+    AssertTimestampMonotonic: '15910424'
+    Before: multi-user.target shutdown.target
+    BlockIOAccounting: 'no'
+    BlockIOWeight: '18446744073709551615'
+    CPUAccounting: 'no'
+    CPUQuotaPerSecUSec: infinity
+    CPUSchedulingPolicy: '0'
+    CPUSchedulingPriority: '0'
+    CPUSchedulingResetOnFork: 'no'
+    CPUShares: '18446744073709551615'
+    CanIsolate: 'no'
+    CanReload: 'yes'
+    CanStart: 'yes'
+    CanStop: 'yes'
+    CapabilityBoundingSet: '18446744073709551615'
+    CollectMode: inactive
+    ConditionResult: 'yes'
+    ConditionTimestamp: Вт 2022-08-02 01:28:16 EDT
+    ConditionTimestampMonotonic: '15910424'
+    Conflicts: shutdown.target
+    ControlGroup: /system.slice/httpd.service
+    ControlPID: '0'
+    DefaultDependencies: 'yes'
+    Delegate: 'no'
+    Description: The Apache HTTP Server
+    DevicePolicy: auto
+    Documentation: man:httpd(8) man:apachectl(8)
+    EnvironmentFile: /etc/sysconfig/httpd (ignore_errors=no)
+    ExecMainCode: '0'
+    ExecMainExitTimestampMonotonic: '0'
+    ExecMainPID: '1113'
+    ExecMainStartTimestamp: Вт 2022-08-02 01:28:16 EDT
+    ExecMainStartTimestampMonotonic: '15913382'
+    ExecMainStatus: '0'
+    ExecReload: '{ path=/usr/sbin/httpd ; argv[]=/usr/sbin/httpd $OPTIONS -k graceful ; ignore_errors=no ; start_time=[n/a] ; stop_time=[n/a] ; pid=0 ; code=(null) ; status=0/0 }'
+    ExecStart: '{ path=/usr/sbin/httpd ; argv[]=/usr/sbin/httpd $OPTIONS -DFOREGROUND ; ignore_errors=no ; start_time=[Вт 2022-08-02 01:28:16 EDT] ; stop_time=[n/a] ; pid=1113 ; code=(null) ; status=0/0 }'
+    ExecStop: '{ path=/bin/kill ; argv[]=/bin/kill -WINCH ${MAINPID} ; ignore_errors=no ; start_time=[n/a] ; stop_time=[n/a] ; pid=0 ; code=(null) ; status=0/0 }'
+    FailureAction: none
+    FileDescriptorStoreMax: '0'
+    FragmentPath: /usr/lib/systemd/system/httpd.service
+    GuessMainPID: 'yes'
+    IOScheduling: '0'
+    Id: httpd.service
+    IgnoreOnIsolate: 'no'
+    IgnoreOnSnapshot: 'no'
+    IgnoreSIGPIPE: 'yes'
+    InactiveEnterTimestampMonotonic: '0'
+    InactiveExitTimestamp: Вт 2022-08-02 01:28:16 EDT
+    InactiveExitTimestampMonotonic: '15913423'
+    JobTimeoutAction: none
+    JobTimeoutUSec: '0'
+    KillMode: control-group
+    KillSignal: '18'
+    LimitAS: '18446744073709551615'
+    LimitCORE: '18446744073709551615'
+    LimitCPU: '18446744073709551615'
+    LimitDATA: '18446744073709551615'
+    LimitFSIZE: '18446744073709551615'
+    LimitLOCKS: '18446744073709551615'
+    LimitMEMLOCK: '65536'
+    LimitMSGQUEUE: '819200'
+    LimitNICE: '0'
+    LimitNOFILE: '4096'
+    LimitNPROC: '3870'
+    LimitRSS: '18446744073709551615'
+    LimitRTPRIO: '0'
+    LimitRTTIME: '18446744073709551615'
+    LimitSIGPENDING: '3870'
+    LimitSTACK: '18446744073709551615'
+    LoadState: loaded
+    MainPID: '1113'
+    MemoryAccounting: 'no'
+    MemoryCurrent: '18446744073709551615'
+    MemoryLimit: '18446744073709551615'
+    MountFlags: '0'
+    Names: httpd.service
+    NeedDaemonReload: 'no'
+    Nice: '0'
+    NoNewPrivileges: 'no'
+    NonBlocking: 'no'
+    NotifyAccess: main
+    OOMScoreAdjust: '0'
+    OnFailureJobMode: replace
+    PermissionsStartOnly: 'no'
+    PrivateDevices: 'no'
+    PrivateNetwork: 'no'
+    PrivateTmp: 'yes'
+    ProtectHome: 'no'
+    ProtectSystem: 'no'
+    RefuseManualStart: 'no'
+    RefuseManualStop: 'no'
+    RemainAfterExit: 'no'
+    Requires: basic.target -.mount system.slice
+    RequiresMountsFor: /var/tmp
+    Restart: 'no'
+    RestartUSec: 100ms
+    Result: success
+    RootDirectoryStartOnly: 'no'
+    RuntimeDirectoryMode: '0755'
+    SameProcessGroup: 'no'
+    SecureBits: '0'
+    SendSIGHUP: 'no'
+    SendSIGKILL: 'yes'
+    Slice: system.slice
+    StandardError: inherit
+    StandardInput: 'null'
+    StandardOutput: journal
+    StartLimitAction: none
+    StartLimitBurst: '5'
+    StartLimitInterval: '10000000'
+    StartupBlockIOWeight: '18446744073709551615'
+    StartupCPUShares: '18446744073709551615'
+    StatusErrno: '0'
+    StatusText: 'Total requests: 0; Current requests/sec: 0; Current traffic:   0 B/sec'
+    StopWhenUnneeded: 'no'
+    SubState: running
+    SyslogLevelPrefix: 'yes'
+    SyslogPriority: '30'
+    SystemCallErrorNumber: '0'
+    TTYReset: 'no'
+    TTYVHangup: 'no'
+    TTYVTDisallocate: 'no'
+    TasksAccounting: 'no'
+    TasksCurrent: '18446744073709551615'
+    TasksMax: '18446744073709551615'
+    TimeoutStartUSec: 1min 30s
+    TimeoutStopUSec: 1min 30s
+    TimerSlackNSec: '50000'
+    Transient: 'no'
+    Type: notify
+    UMask: '0022'
+    UnitFilePreset: disabled
+    UnitFileState: enabled
+    WantedBy: multi-user.target
+    WatchdogTimestamp: Вт 2022-08-02 01:28:16 EDT
+    WatchdogTimestampMonotonic: '16377520'
+    WatchdogUSec: '0'
+2022-08-02 15:13:36,356 p=47852 u=anduser n=ansible | TASK [configure_server : h. Copy ssh config file to /opt] ****************************************************************************************************************************
+2022-08-02 15:13:36,356 p=47852 u=anduser n=ansible | Вторник 02 августа 2022  15:13:36 +0300 (0:00:00.800)       0:00:05.068 ******* 
+2022-08-02 15:13:36,748 p=47852 u=anduser n=ansible | changed: [SRV01] => changed=true 
+  checksum: f2b054756f78acb1169cbc8b8f347a69630cb8bc
+  dest: /opt/sshd_config
+  gid: 1001
+  group: ansible
+  md5sum: 40d961cd3154f0439fcac1a50bd77b96
+  mode: '0600'
+  owner: ansible
+  secontext: system_u:object_r:usr_t:s0
+  size: 3907
+  src: /etc/ssh/sshd_config
+  state: file
+  uid: 1001
+2022-08-02 15:13:36,756 p=47852 u=anduser n=ansible | TASK [configure_server : i. Rename previously copied file - cp with new name (1/2)] **************************************************************************************************
+2022-08-02 15:13:36,757 p=47852 u=anduser n=ansible | Вторник 02 августа 2022  15:13:36 +0300 (0:00:00.400)       0:00:05.469 ******* 
+2022-08-02 15:13:37,102 p=47852 u=anduser n=ansible | changed: [SRV01] => changed=true 
+  checksum: f2b054756f78acb1169cbc8b8f347a69630cb8bc
+  dest: /opt/ssh_test_config
+  gid: 0
+  group: root
+  md5sum: 40d961cd3154f0439fcac1a50bd77b96
+  mode: '0600'
+  owner: root
+  secontext: system_u:object_r:usr_t:s0
+  size: 3907
+  src: /opt/sshd_config
+  state: file
+  uid: 0
+2022-08-02 15:13:37,113 p=47852 u=anduser n=ansible | TASK [configure_server : j. Comments out 'PermitRootLogin yes'] **********************************************************************************************************************
+2022-08-02 15:13:37,114 p=47852 u=anduser n=ansible | Вторник 02 августа 2022  15:13:37 +0300 (0:00:00.357)       0:00:05.826 ******* 
+2022-08-02 15:13:37,574 p=47852 u=anduser n=ansible | ok: [SRV01] => changed=false 
+  msg: ''
+  rc: 0
+2022-08-02 15:13:37,586 p=47852 u=anduser n=ansible | TASK [configure_server : k. Replace 'PermitRootLogin yes' --> 'PermitRootLogin no'] **************************************************************************************************
+2022-08-02 15:13:37,587 p=47852 u=anduser n=ansible | Вторник 02 августа 2022  15:13:37 +0300 (0:00:00.472)       0:00:06.299 ******* 
+2022-08-02 15:13:37,957 p=47852 u=anduser n=ansible | ok: [SRV01] => changed=false 
+  msg: ''
+  rc: 0
+2022-08-02 15:13:37,963 p=47852 u=anduser n=ansible | TASK [configure_server : l. Create 'PermitRootLogin yes' @ EOF if not exists] ********************************************************************************************************
+2022-08-02 15:13:37,964 p=47852 u=anduser n=ansible | Вторник 02 августа 2022  15:13:37 +0300 (0:00:00.376)       0:00:06.676 ******* 
+2022-08-02 15:13:38,426 p=47852 u=anduser n=ansible | changed: [SRV01] => changed=true 
+  backup: ''
+  msg: line replaced
+2022-08-02 15:13:38,449 p=47852 u=anduser n=ansible | RUNNING HANDLER [configure_server : rm-file] *****************************************************************************************************************************************
+2022-08-02 15:13:38,449 p=47852 u=anduser n=ansible | Вторник 02 августа 2022  15:13:38 +0300 (0:00:00.485)       0:00:07.161 ******* 
+2022-08-02 15:13:38,831 p=47852 u=anduser n=ansible | changed: [SRV01] => changed=true 
+  path: /opt/sshd_config
+  state: absent
+2022-08-02 15:13:38,839 p=47852 u=anduser n=ansible | PLAY RECAP ***************************************************************************************************************************************************************************
+2022-08-02 15:13:38,839 p=47852 u=anduser n=ansible | SRV01                      : ok=15   changed=7    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+2022-08-02 15:13:38,839 p=47852 u=anduser n=ansible | Вторник 02 августа 2022  15:13:38 +0300 (0:00:00.390)       0:00:07.551 ******* 
+2022-08-02 15:13:38,839 p=47852 u=anduser n=ansible | =============================================================================== 
+2022-08-02 15:13:38,839 p=47852 u=anduser n=ansible | configure_server : g. Disable apache ------------------------------------------------------------------------------------------------------------------------------------------ 0.80s
+2022-08-02 15:13:38,839 p=47852 u=anduser n=ansible | configure_server : f. Set hostname s-test-01 ---------------------------------------------------------------------------------------------------------------------------------- 0.76s
+2022-08-02 15:13:38,839 p=47852 u=anduser n=ansible | configure_server : c. Copy .txt file from template from ansible server -------------------------------------------------------------------------------------------------------- 0.74s
+2022-08-02 15:13:38,839 p=47852 u=anduser n=ansible | configure_server : a1. Add user1 ---------------------------------------------------------------------------------------------------------------------------------------------- 0.65s
+2022-08-02 15:13:38,839 p=47852 u=anduser n=ansible | configure_server : l. Create 'PermitRootLogin yes' @ EOF if not exists -------------------------------------------------------------------------------------------------------- 0.49s
+2022-08-02 15:13:38,840 p=47852 u=anduser n=ansible | configure_server : j. Comments out 'PermitRootLogin yes' ---------------------------------------------------------------------------------------------------------------------- 0.47s
+2022-08-02 15:13:38,840 p=47852 u=anduser n=ansible | configure_server : d. Copy .txt file to /opt ---------------------------------------------------------------------------------------------------------------------------------- 0.46s
+2022-08-02 15:13:38,840 p=47852 u=anduser n=ansible | configure_server : b. Create test_copy ---------------------------------------------------------------------------------------------------------------------------------------- 0.46s
+2022-08-02 15:13:38,840 p=47852 u=anduser n=ansible | configure_server : h. Copy ssh config file to /opt ---------------------------------------------------------------------------------------------------------------------------- 0.40s
+2022-08-02 15:13:38,840 p=47852 u=anduser n=ansible | configure_server : a2. Add user2 ---------------------------------------------------------------------------------------------------------------------------------------------- 0.40s
+2022-08-02 15:13:38,840 p=47852 u=anduser n=ansible | configure_server : a3. Add user3 ---------------------------------------------------------------------------------------------------------------------------------------------- 0.39s
+2022-08-02 15:13:38,840 p=47852 u=anduser n=ansible | configure_server : rm-file ---------------------------------------------------------------------------------------------------------------------------------------------------- 0.39s
+2022-08-02 15:13:38,840 p=47852 u=anduser n=ansible | configure_server : k. Replace 'PermitRootLogin yes' --> 'PermitRootLogin no' -------------------------------------------------------------------------------------------------- 0.38s
+2022-08-02 15:13:38,840 p=47852 u=anduser n=ansible | configure_server : e. chmod and chown for existing .txt file ------------------------------------------------------------------------------------------------------------------ 0.38s
+2022-08-02 15:13:38,840 p=47852 u=anduser n=ansible | configure_server : i. Rename previously copied file - cp with new name (1/2) -------------------------------------------------------------------------------------------------- 0.36s
+2022-08-02 15:13:38,840 p=47852 u=anduser n=ansible | Playbook run took 0 days, 0 hours, 0 minutes, 7 seconds

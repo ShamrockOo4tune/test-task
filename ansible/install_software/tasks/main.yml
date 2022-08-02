@@ -36,12 +36,7 @@
 - name     : e. Wait for machine to come back
   wait_for_connection:
    timeout: '{{ DEFAULT_TIMEOUT }}'
-   delay  : '{{ DEFAULT_DELAY }}'
-
-# But this won't work!
-# - name     : e. Reboot with variable delay
-#   reboot   : 
-#     reboot_command : shutdown -r +'{{ VARIABLE_DELAY }}' 
+   delay  : '{{ DEFAULT_DELAY }}' 
 
 - name     : f. Get apache state 
   systemd  :
@@ -82,18 +77,9 @@
 - name     : k. Immediate reboot
   reboot   :
 
-- name       : l. Get path of directory where main ansible.cfg is situated
-  shell      : ansible --version | awk 'NR == 2 {print $4}' | sed 's|/ansible.cfg$||'
-  delegate_to: '{{ DEFAULT_CONTROL_PLANE_IP }}'
-  become     : 0
-  register   : CFG_PATH
-
-
-- name       : l. Get contents of directory where main ansible.cfg is situated  
-  delegate_to: '{{ DEFAULT_CONTROL_PLANE_IP }}'
-  become     : 0
+- name       : l. Get contents of main apache config directory
   find       :
-    paths    : '{{ CFG_PATH.stdout }}'
+    paths    : '{{ DEFAULT_APACHE_CONFIG_DIR }}'
     hidden   : 1
     file_type: any
   register   : CONTENTS

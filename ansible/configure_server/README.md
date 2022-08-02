@@ -1,38 +1,59 @@
-Role Name
-=========
+## configure_server  
+===================  
 
-A brief description of the role goes here.
+Example server configuration tasks as per TZ.  
 
-Requirements
-------------
 
-Any pre-requisites that may not be covered by Ansible itself or the role should be mentioned here. For instance, if the role uses the EC2 module, it may be a good idea to mention in this section that the boto package is required.
 
-Role Variables
---------------
+## Requirements  
+------------  
 
-A description of the settable variables for this role should go here, including any variables that are in defaults/main.yml, vars/main.yml, and any variables that can/should be set via parameters to the role. Any variables that are read from other roles and/or the global scope (ie. hostvars, group vars, etc.) should be mentioned here as well.
+install_software role should be deployed with a play prior colling this role   
 
-Dependencies
-------------
 
-A list of other roles hosted on Galaxy should go here, plus any details in regards to parameters that may need to be set for other roles, or variables that are used from other roles.
+## Role Variables  
+--------------  
 
-Example Playbook
+low priority defaults:  
+DEFAULT_OWNER               : Specify the owner who will own the newly created / copied files  
+DEFAULT_GROUP               : Specify the group who will own the newly created / copied files  
+DEFAULT_TEST_COPY_PATH      : Defult directory to be created and files will be copied to it  
+DEFAULT_SSH_CONFIG          : Default sshd config file path   
+
+variables:
+USERS:                      : Dictionary of dictionaries representing users and their  
+  user1:                    : parameters that needs to be created  
+    name        : user1    
+    shell       : /bin/bash    
+    system      : 0           
+    state       : present     
+    create_home : 1           
+
+VAR_J2_FILE_NAME            : sample template file path  
+SPECIAL_OWNER               : whom the file ownership will be assigned to  
+NEW_HOSTNAME                : change server hostname to this value  
+NEW_SSH_CONFIG              : file name for ssh config copy  
+
+
+## Dependencies    
+------------  
+
+Not applicable  
+
+
+## Example Playbook
 ----------------
 
-Including an example of how to use your role (for instance, with variables passed in as parameters) is always nice for users too:
+[Available here: /ansible/configure_server.yaml](https://github.com/ShamrockOo4tune/test-task/blob/master/ansible/configure_server.yaml)  
 
-    - hosts: servers
-      roles:
-         - { role: username.rolename, x: 42 }
+## License  
+-------  
 
-License
--------
+none
 
-BSD
-
-Author Information
+## Author Information
 ------------------
 
-An optional section for the role authors to include contact information, or a website (HTML is not allowed).
+Shamil Gumerov  
+shamusg12345@gmail.com  
+https://github.com/ShamrockOo4tune  

@@ -1,2 +1,122 @@
 ---
 # tasks file for configure_server
+# a. Создание 3-х локальных учетных записей пользователей, пользователи создаются каждый отдельной задачей;
+# b. Создание каталога /test_copy, в корне;
+# c. Копирование текстового файла в созданный выше каталог, с сервера Ansible на целевой сервер. 
+#    Использовать в качестве объекта копирования предварительно созданный текстовый файл-шаблон Jinja2;
+# d. Копирование полученного текстового файла на конечном сервере в каталог /opt c переименованием его 
+#    имени в формате «имя_созданного_файла_01.txt»
+# e. Добавление прав на чтение на файл, сделать владельцем соответствующего пользователя;
+# f. Изменение имя виртуальной машины (hostname), примерный формат имени s-test-01;
+# g. Удаление сервиса Apache из автозагрузки системы;
+# h. Копирование конфигурационного файла SSH в каталог /opt;
+# i. Переименование скопированного конфигурационного файла SSH, примерный формат имени ssh_test_config;
+# j. В конфигурационном файле SSH произвести комментирование строки «PermitRootLogin yes»;
+# k. В конфигурационном файле SSH изменить параметр PermitRootLogin с «yes», на «no»;
+# l. В случае отсутствия строки «PermitRootLogin yes», произвести ее создание в конце файла.
+
+
+# Better go in loop with first 3 tasks, but will proceed as stated in TZ
+- name          : a1. Add user1
+  user          :
+    name        : "{{ USERS['user1'].name }}"
+    shell       : "{{ USERS['user1'].shell }}"
+    system      : "{{ USERS['user1'].system }}"
+    state       : "{{ USERS['user1'].state }}"
+    create_home : "{{ USERS['user1'].create_home }}"
+ 
+- name          : a2. Add user2
+  user          :
+    name        : "{{ USERS['user2'].name }}"
+    shell       : "{{ USERS['user2'].shell }}"
+    system      : "{{ USERS['user2'].system }}"
+    state       : "{{ USERS['user2'].state }}"
+    create_home : "{{ USERS['user2'].create_home }}"
+ 
+- name          : a3. Add user3
+  user          :
+    name        : "{{ USERS['user3'].name }}"
+    shell       : "{{ USERS['user3'].shell }}"
+    system      : "{{ USERS['user3'].system }}"
+    state       : "{{ USERS['user3'].state }}"
+    create_home : "{{ USERS['user3'].create_home }}"
+
+- name          : b. Create test_copy
+  file          :
+    path        : '{{ DEFAULT_TEST_COPY_PATH }}'
+    state       : directory
+    mode        : '0755'
+    owner       : '{{ DEFAULT_OWNER }}'
+    group       : '{{ DEFAULT_GROUP }}'
+  
+- name          : c. Copy .txt file from template from ansible server
+  template      :
+    src         : '{{ VAR_J2_FILE_NAME }}'
+    dest        : "{{ DEFAULT_TEST_COPY_PATH }}/{{ VAR_J2_FILE_NAME.split('.j2')[0] }}"
+    owner       : '{{ DEFAULT_OWNER }}'
+    group       : '{{ DEFAULT_GROUP }}'
+  register      : TEMPLATED_RESULT
+
+- name          : d. Copy .txt file to /opt
+  copy          :
+    remote_src  : 1
+    src         : '{{ TEMPLATED_RESULT.dest }}'
+    dest        : "/opt/{{ TEMPLATED_RESULT.dest.split('/')[-1].split('.txt')[0] }}_01.txt"
+    owner       : '{{ DEFAULT_OWNER }}'
+    group       : '{{ DEFAULT_GROUP }}'
+    mode        : '0664'
+  
+- name          : e. chmod and chown for existing .txt file
+  file          :
+    path        : "/opt/{{ TEMPLATED_RESULT.dest.split('/')[-1].split('.txt')[0] }}_01.txt"
+    owner       : '{{ SPECIAL_OWNER }}'
+    group       : '{{ DEFAULT_GROUP }}'
+    mode        : '0600'
+
+- name          : f. Set hostname s-test-01
+  hostname      :
+    name        : '{{ NEW_HOSTNAME }}'
+    use         : systemd
+
+- name          : g. Disable apache
+  systemd       :
+    name        : httpd
+    enabled     : 0
+
+- name          : h. Copy ssh config file to /opt
+  copy          :
+    remote_src  : 1
+    src         : '{{ DEFAULT_SSH_CONFIG }}'
+    dest        : "/opt/{{ DEFAULT_SSH_CONFIG.split('/')[-1] }}"
+    owner       : '{{ DEFAULT_OWNER }}'
+    group       : '{{ DEFAULT_GROUP }}'
+    mode        : '0600'
+  register      : COPY_RESULT
+
+- name          : i. Rename previously copied file - cp with new name (1/2)
+  copy          :
+    remote_src  : 1
+    src         : '{{ COPY_RESULT.dest }}'
+    dest        : '/opt/{{ NEW_SSH_CONFIG }}'
+    mode        : preserve
+  notify        : rm-file
+    
+- name          : j. Comments out 'PermitRootLogin yes'
+  replace       : 
+    path        : '/opt/{{ NEW_SSH_CONFIG }}'
+    regexp      : '^[ ]*PermitRootLogin yes'
+    replace     : '# PermitRootLogin yes'
+
+- name          : k. Replace 'PermitRootLogin yes' --> 'PermitRootLogin no'
+  replace       : 
+    path        : '/opt/{{ NEW_SSH_CONFIG }}'
+    regexp      : '^[ ]*PermitRootLogin yes'
+    replace     : 'PermitRootLogin no'
+
+- name          : l. Create 'PermitRootLogin yes' @ EOF if not exists
+  lineinfile    :
+    path        : '/opt/{{ NEW_SSH_CONFIG }}'
+    regex       : '^[# ]*PermitRootLogin yes'
+    line        : 'PermitRootLogin yes'
+    state       : present
+    insertafter : EOF

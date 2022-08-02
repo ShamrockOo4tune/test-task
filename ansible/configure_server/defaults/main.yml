@@ -1,2 +1,7 @@
 ---
 # defaults file for configure_server
+DEFAULT_OWNER          : '{{ ansible_user }}'
+DEFAULT_GROUP          : '{{ ansible_user }}'
+DEFAULT_TEST_COPY_PATH : /test_copy
+DEFAULT_SSH_CONFIG     : /etc/ssh/sshd_config
+...

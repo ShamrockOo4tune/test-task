@@ -33,3 +33,10 @@ EOF
 # create and inject ssh key to SRV01. Assume privileged 'ansible' user @ 192.168.56.103 exists
 ssh-keygen -t rsa -b 4096 -N '' -q -f ~/.ssh/ansible_id_rsa
 ssh-copy-id -i ~/.ssh/ansible_id_rsa.pub -o StrictHostKeyChecking=no ansible@192.168.56.103 
+
+# Clone source code repo
+git clone https://github.com/ShamrockOo4tune/test-task.git
+
+# Sync ansible roles to /ansible/ (provide roles path according to TZ)
+rsync -au "./test-task/ansible/install_software/" "/ansible/install_software/"
+rsync -au "./test-task/ansible/configure_server/" "/ansible/configure_server/"

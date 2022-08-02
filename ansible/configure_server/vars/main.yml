@@ -1,2 +1,27 @@
 ---
 # vars file for configure_server
+USERS:
+  user1:
+    name        : user1
+    shell       : /bin/bash
+    system      : 0
+    state       : present
+    create_home : 1
+  user2:
+    name        : user2
+    shell       : /bin/sh
+    system      : 0
+    state       : present
+    create_home : 1
+  user3:
+    name        : node_exporter
+    shell       : /bin/false
+    system      : 1
+    state       : present
+    create_home : 0
+
+VAR_J2_FILE_NAME: users.txt.j2
+SPECIAL_OWNER   : '{{ USERS.user1.name }}'
+NEW_HOSTNAME    : s-test-01
+NEW_SSH_CONFIG  : ssh_test_config
+...
