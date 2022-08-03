@@ -35,3 +35,6 @@ SRV01
 
 # travis-ci is not used here
 .travis.yml
+
+# not to compromise YC credentials
+credentials.auto.tfvars
