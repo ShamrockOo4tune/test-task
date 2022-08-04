@@ -38,3 +38,4 @@ SRV01
 
 # not to compromise YC credentials
 credentials.auto.tfvars
+bucket_name.auto.tfvars
