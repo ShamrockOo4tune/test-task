@@ -11,5 +11,5 @@ output "bucket_name_init_str" {
 }
 
 output "ydb_api_endpoint" {
-  value = "# dynamodb_endpoint = \"${yandex_ydb_database_serverless.remote_state.document_api_endpoint}\""
+  value = "dynamodb_endpoint = \"${yandex_ydb_database_serverless.remote_state.document_api_endpoint}\""
 }

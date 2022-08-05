@@ -1,3 +1,8 @@
+variable "folder_id" {
+  type        = string
+  description = "In what folder will the resource be created"
+}
+
 variable "environment" {
   type        = string
   description = "What environment do we place the resources to? [ test | dev | stage | prod ] ?"

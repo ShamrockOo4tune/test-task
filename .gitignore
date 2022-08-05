@@ -38,4 +38,8 @@ SRV01
 
 # not to compromise YC credentials
 credentials.auto.tfvars
+backend.auto.tfvars
+
+# .tfvars used to speed up debugging:
 bucket_name.auto.tfvars
+network_inputs.auto.tfvars

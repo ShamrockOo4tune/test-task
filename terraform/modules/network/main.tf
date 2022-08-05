@@ -9,8 +9,9 @@ terraform {
 }
 
 resource "yandex_vpc_network" "custom" {
-  name   = var.vpc_name
-  labels = local.labels
+  name      = var.vpc_name
+  labels    = local.labels
+  folder_id = var.folder_id
 }
 
 resource "yandex_vpc_subnet" "custom" {

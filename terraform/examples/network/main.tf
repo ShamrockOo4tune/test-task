@@ -6,6 +6,13 @@ terraform {
       version = "0.77.0"
     }
   }
+  backend "s3" {
+    key                         = "examples/network/terraform.tfstate"
+    endpoint                    = "storage.yandexcloud.net"
+    region                      = "ru-central1"
+    skip_region_validation      = true
+    skip_credentials_validation = true
+  }
 }
 
 provider "yandex" {
@@ -17,6 +24,7 @@ provider "yandex" {
 
 module "network" {
   source       = "../../modules/network"
+  folder_id    = var.folder_id
   environment  = "test"
   vpc_name     = var.vpc_name
   subnet_name  = var.subnet_name
