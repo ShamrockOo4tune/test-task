@@ -1,0 +1,14 @@
+#cloud-config
+users:
+  - name: test
+    groups: sudo
+    shell: /bin/bash
+    sudo: ['ALL=(ALL) NOPASSWD:ALL']
+    ssh-authorized-keys:
+      - ${ssh_public_key}
+
+packages:
+  - ${apache_package_name}
+
+runcmd:
+  - systemctl enable --now ${apache_package_name}

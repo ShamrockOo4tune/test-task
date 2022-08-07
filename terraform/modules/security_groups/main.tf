@@ -25,6 +25,13 @@ resource "yandex_vpc_security_group" "custom" {
     port           = 80
   }
 
+  ingress {
+    protocol       = "TCP"
+    description    = "allow all ssh"
+    v4_cidr_blocks = ["0.0.0.0/0"]
+    port           = 22
+  }
+
   egress {
     protocol       = "ANY"
     description    = "allow all out"

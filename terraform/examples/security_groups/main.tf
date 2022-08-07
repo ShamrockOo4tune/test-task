@@ -41,3 +41,7 @@ module "security_groups" {
   name        = "simple_http"
   network_id  = data.terraform_remote_state.network.outputs.custom_vpc_network_id
 }
+
+output "security_group_id" {
+  value = module.security_groups.security_group_id
+}
